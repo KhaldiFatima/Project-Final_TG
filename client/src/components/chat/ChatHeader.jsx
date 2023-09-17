@@ -11,7 +11,7 @@ import {
 import Auth from '../../Auth';
 import moment from 'moment';
 
-const ChatHeader = ({ contact, typing }) => {
+const ChatHeader = ({ contact, typing, toggle }) => {
   const logout = () => {
     Auth.logout();
     window.location.replace('/');
@@ -27,16 +27,24 @@ const ChatHeader = ({ contact, typing }) => {
   };
   return (
     <Row className='heading m-0'>
-      <Avatar src={contact.avatar} />
+      {contact.name ? (
+        <>
+          <div onClick={toggle}>
+            <Avatar src={contact.avatar} />
+          </div>
 
-      <div className='text-right'>
-        <div>{contact ? contact.name : ''}</div>
-        <small>{getStatus()}</small>
-      </div>
+          <div className='text-right'>
+            <div> {contact.name}</div>
+            <small>{getStatus()}</small>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
       <Nav className='mr-auto' navbar>
         <UncontrolledDropdown>
           <DropdownToggle tag='a' className='nav-link'>
-            <i className='fa fa-ellipsis-v' />
+            <i className='fa fa-ellipsis-v' style={{ color: '#dfa700' }} />
           </DropdownToggle>
           <DropdownMenu>
             <DropdownItem onClick={logout}>تسجيل الخروج</DropdownItem>

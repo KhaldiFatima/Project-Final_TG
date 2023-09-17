@@ -5,12 +5,14 @@ import {
   Contacts,
   MessageForm,
   Messages,
+  UserProfile,
 } from '../components';
 
 import { useEffect, useState } from 'react';
 import socketIO from 'socket.io-client';
 import Auth from '../Auth';
 import { BASE_URL } from './helper';
+import bg from '../assets/BG.svg';
 
 const Chat = () => {
   const [myContacts, setMyContacts] = useState({
@@ -22,11 +24,10 @@ const Chat = () => {
 
   const [connected, setConnected] = useState(false);
   const [typing, setTyping] = useState('');
-
   const [loading, setLoading] = useState(true);
+  const [userProfile, setUserProfile] = useState(false);
   // const [isSeen, setIsSeen] = useState(false);
   // const [timeout, setTimeOut] = useState();
-  // const hi = 'hi';
 
   // const [socket, setSocket] = useState(null);
   // useEffect(() => {
@@ -40,10 +41,6 @@ const Chat = () => {
   let socket = socketIO(BASE_URL, {
     query: 'token=' + Auth.getToken(),
   });
-
-  // let socket = socketIO(BASE_URL, {
-  //   query: 'token=' + Auth.getToken(),
-  // });
 
   const initSocketConnection = () => {
     socket.on('connect', () => setConnected(true));
@@ -162,9 +159,9 @@ const Chat = () => {
     }));
   };
 
-  //|| !myContacts.contacts || !myContacts.messages
+  const userProfileToggle = () => setUserProfile(!userProfile);
 
-  if (!connected) {
+  if (!connected || !myContacts.contacts || !myContacts.messages) {
     return <Spinner id='loader' color='success' />;
   }
   return (
@@ -176,12 +173,29 @@ const Chat = () => {
           messages={myContacts.messages}
           chatNavigate={chatNavigate}
         />
+        <UserProfile
+          contact={myContacts.contact}
+          toggle={userProfileToggle}
+          open={userProfile}
+        />
       </div>
 
       <div id='messages-section' className='col-6 col-md-8'>
-        <ChatHeader contact={myContacts.contact} typing={typing} />
-        {getChat()}
-        <MessageForm sender={sendMessage} sendType={sendType} />
+        <ChatHeader
+          contact={myContacts.contact}
+          typing={typing}
+          toggle={userProfileToggle}
+        />
+        {myContacts.contact.name ? (
+          <>
+            {getChat()}
+            <MessageForm sender={sendMessage} sendType={sendType} />
+          </>
+        ) : (
+          <div id='messages'>
+            <img src={bg} alt='' />
+          </div>
+        )}
       </div>
     </Row>
   );

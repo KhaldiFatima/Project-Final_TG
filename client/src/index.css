@@ -14,12 +14,12 @@
 
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.2);
-  background: #ffc926;
+  background: #a17a04;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.3);
-  background: #dfa702;
+  background: #806002;
 }
 
 #main-container {
@@ -44,7 +44,7 @@
 .search {
   background: #eeeeee82;
   padding: 1rem !important;
-  min-height: 50px;
+  min-height: 40px;
 }
 
 #contacts-section {
@@ -102,9 +102,21 @@
   flex: 1 !important;
   background: hsl(0, 0%, 80%);
   overflow: auto;
-
   display: flex !important;
   flex-direction: column !important;
+}
+
+#messages img {
+  /* flex: 2; */
+  /* background: hsl(0, 0%, 80%); */
+  /* overflow: auto; */
+  /* display: flex; */
+  /* flex-direction:column; */
+  width: 30%;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  /* align-content: center; */
 }
 
 .message-item {
@@ -157,6 +169,7 @@
 
 .send {
   cursor: pointer;
+  color: #a17a04;
 }
 
 .side-profile {

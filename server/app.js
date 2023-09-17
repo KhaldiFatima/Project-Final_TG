@@ -13,6 +13,7 @@ require('./socket-handler');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
+const accountRouter = require('./routes/account');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/account', accountRouter);
 
 app.use((err, req, res, next) => {
   if (

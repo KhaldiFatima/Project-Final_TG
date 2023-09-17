@@ -1,7 +1,6 @@
 import Message from './Message';
 import { useEffect } from 'react';
 const Messages = ({ user, messages }) => {
-  // const messageRef = useRef(null);
   useEffect(() => {
     const chatMessages = document.querySelector('#messages');
     chatMessages.scrollTop = chatMessages.scrollHeight;

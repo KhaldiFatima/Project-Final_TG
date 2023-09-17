@@ -41,7 +41,7 @@ const MessageForm = ({ sender, sendType }) => {
         value={message}
         placeholder='اكتب رسالتك هنا'
       />
-      <i className='fa fa-send text-muted px-3 send' onClick={handlerSend} />
+      <i className='fa fa-send  px-3 send' onClick={handlerSend} />
     </div>
   );
 };
