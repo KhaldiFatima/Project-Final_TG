@@ -78,6 +78,7 @@
 }
 .contact:hover {
   background: hsl(0, 0%, 95%);
+  background: #cc9e1f42;
 }
 .contact:active {
   background: hsl(0, 0%, 85%);
@@ -107,16 +108,8 @@
 }
 
 #messages img {
-  /* flex: 2; */
-  /* background: hsl(0, 0%, 80%); */
-  /* overflow: auto; */
-  /* display: flex; */
-  /* flex-direction:column; */
-  width: 30%;
+  width: 45%;
   margin: auto;
-  justify-content: center;
-  align-items: center;
-  /* align-content: center; */
 }
 
 .message-item {

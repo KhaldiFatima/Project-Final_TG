@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 import socketIO from 'socket.io-client';
 import Auth from '../Auth';
 import { BASE_URL } from './helper';
-import bg from '../assets/BG.svg';
+import background from '../assets/bg1.svg';
 
 const Chat = () => {
   const [myContacts, setMyContacts] = useState({
@@ -26,6 +26,7 @@ const Chat = () => {
   const [typing, setTyping] = useState('');
   const [loading, setLoading] = useState(true);
   const [userProfile, setUserProfile] = useState(false);
+  const [profile, setProfile] = useState(false);
   // const [isSeen, setIsSeen] = useState(false);
   // const [timeout, setTimeOut] = useState();
 
@@ -160,6 +161,7 @@ const Chat = () => {
   };
 
   const userProfileToggle = () => setUserProfile(!userProfile);
+  const profileToggle = () => setProfile(!profile);
 
   if (!connected || !myContacts.contacts || !myContacts.messages) {
     return <Spinner id='loader' color='success' />;
@@ -167,7 +169,7 @@ const Chat = () => {
   return (
     <Row className='h-100'>
       <div id='contacts-section' className='col-6 col-md-4'>
-        <ContactHeader />
+        <ContactHeader user={myContacts.user} toggle={profileToggle} />
         <Contacts
           contacts={myContacts.contacts}
           messages={myContacts.messages}
@@ -193,7 +195,7 @@ const Chat = () => {
           </>
         ) : (
           <div id='messages'>
-            <img src={bg} alt='' />
+            <img src={background} alt='' />
           </div>
         )}
       </div>
