@@ -5,7 +5,7 @@ const ContactHeader = ({ user, toggle }) => {
   return (
     <div>
       <Row className='heading'>
-        <Avatar />
+        <Avatar src={user.avatar} />
         <div>جهات الإتصال</div>
         <div className='mr-auto nav-link' onClick={toggle}>
           <i className='fa fa-bars' />

@@ -3,6 +3,7 @@ import {
   ChatHeader,
   ContactHeader,
   Contacts,
+  EditProfile,
   MessageForm,
   Messages,
   UserProfile,
@@ -12,7 +13,6 @@ import { useEffect, useState } from 'react';
 import socketIO from 'socket.io-client';
 import Auth from '../Auth';
 import { BASE_URL } from './helper';
-import background from '../assets/bg1.svg';
 
 const Chat = () => {
   const [myContacts, setMyContacts] = useState({
@@ -60,6 +60,7 @@ const Chat = () => {
       setLoading(false);
     });
     socket.on('new_user', newUser);
+    socket.on('update_user', updateUser);
     socket.on('message', newMessage);
     socket.on('user_status', updateUsersState);
     socket.on('typing', typingMessage);
@@ -80,9 +81,30 @@ const Chat = () => {
   useEffect(() => {}, []);
 
   const newUser = (user) => {
-    let contacts1 = myContacts.contacts.concat(user);
-    setMyContacts((prev) => ({ ...prev, contacts: contacts1 }));
+    let contacts = myContacts.contacts.concat(user);
+    setMyContacts((prev) => ({ ...prev, contacts: contacts }));
     // window.location.reload('/');
+    setLoading(true);
+  };
+
+  const updateUser = (user) => {
+    if (myContacts.user.id === user.id) {
+      setMyContacts((prev) => ({ ...prev, user: user }));
+      Auth.setUser(user);
+      return;
+    }
+
+    let contacts = myContacts.contacts;
+    contacts.forEach((element, index) => {
+      if (element.id === user.id) {
+        contacts[index] = user;
+        contacts[index].status = element.status;
+      }
+    });
+    setMyContacts((prev) => ({ ...prev, contacts: contacts }));
+    if (myContacts.contact.id === user.id)
+      setMyContacts((prev) => ({ ...prev, contact: user }));
+
     setLoading(true);
   };
 
@@ -107,7 +129,7 @@ const Chat = () => {
     // const timeout = setTimeout(typingTimeOut(), 5000);
     // clearTimeout(timeout);
 
-    setLoading(true);
+    // setLoading(true);
   };
   // const typingTimeOut = () => setTyping(false);
 
@@ -180,6 +202,11 @@ const Chat = () => {
           toggle={userProfileToggle}
           open={userProfile}
         />
+        <EditProfile
+          user={myContacts.user}
+          toggle={profileToggle}
+          open={profile}
+        />
       </div>
 
       <div id='messages-section' className='col-6 col-md-8'>
@@ -194,9 +221,7 @@ const Chat = () => {
             <MessageForm sender={sendMessage} sendType={sendType} />
           </>
         ) : (
-          <div id='messages'>
-            <img src={background} alt='' />
-          </div>
+          <div className='no-contact'></div>
         )}
       </div>
     </Row>

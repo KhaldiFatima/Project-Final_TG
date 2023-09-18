@@ -6,7 +6,7 @@ import ChatHeader from './chat/ChatHeader';
 import Messages from './chat/Messages';
 import MessageForm from './chat/MessageForm';
 import UserProfile from './side/UserProfile';
-// import EditProfile from './side/EditProfile';
+import EditProfile from './side/EditProfile';
 
 export {
   Error,
@@ -17,5 +17,5 @@ export {
   Messages,
   MessageForm,
   UserProfile,
-  // EditProfile,
+  EditProfile,
 };

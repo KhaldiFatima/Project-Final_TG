@@ -8,7 +8,7 @@ const Contacts = ({ messages, contacts, chatNavigate }) => {
   const handelSearch = (e) => setSearch(e.target.value);
 
   const getContact = (contact, index) => {
-    if (!contact.name.includes(search)) return;
+    if (!contact.name?.includes(search)) return;
     let msgs = messages.filter(
       (e) => e.sender === contact.id || e.receiver === contact.id
     );

@@ -11,13 +11,7 @@ const Messages = ({ user, messages }) => {
     return <Message key={index} message={message} />;
   };
 
-  return (
-    <div id='messages'>
-      {' '}
-      <img src={bg} alt='' />
-      {messages.map(getMessage)}
-    </div>
-  );
+  return <div id='messages'>{messages.map(getMessage)}</div>;
 };
 
 export default Messages;

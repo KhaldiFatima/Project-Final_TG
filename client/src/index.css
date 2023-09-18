@@ -78,7 +78,6 @@
 }
 .contact:hover {
   background: hsl(0, 0%, 95%);
-  background: #cc9e1f42;
 }
 .contact:active {
   background: hsl(0, 0%, 85%);
@@ -101,15 +100,19 @@
 
 #messages {
   flex: 1 !important;
-  background: hsl(0, 0%, 80%);
   overflow: auto;
   display: flex !important;
   flex-direction: column !important;
 }
-
-#messages img {
-  width: 45%;
-  margin: auto;
+.no-contact {
+  flex: 1 !important;
+  background-image: url('./assets/BG.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 35%;
+  overflow: auto;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .message-item {
@@ -185,14 +188,16 @@
 
 .side-profile input {
   border: none;
-  border-bottom: 2px solid transparent !important;
+  border-right: hsl(0, 0%, 50%) 2px solid;
+  border-bottom: hsl(0, 0%, 50%) 2px solid;
   outline: none;
   box-shadow: none !important;
   border-radius: 0;
 }
 
 .side-profile input:focus {
-  border-bottom-color: hsl(0, 0%, 50%) !important;
+  border-bottom-color: #a17a04 !important;
+  border-right-color: #a17a04 !important;
 }
 
 .overlay {
@@ -261,4 +266,15 @@
   position: fixed;
   top: 45%;
   left: 50%;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.about a {
+  color: #a17a04;
 }

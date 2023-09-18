@@ -1,5 +1,3 @@
-const createError = require('http-errors');
-
 exports.profile = (req, res, next) => {
   const user = req.user;
 

@@ -1,6 +1,6 @@
 // import { defineConfig } from 'vite';
 // import react from '@vitejs/plugin-react';
-// import { PROXY_URL } from './src/views/helper';
+// import { BASE_URL } from './src/views/helper';
 // // https://vitejs.dev/config/
 
 // export default defineConfig({
@@ -10,7 +10,7 @@
 //     // port: 3000,
 //     proxy: {
 //       '/api': {
-//         target: PROXY_URL,
+//         target: BASE_URL,
 //         changeOrigin: true,
 //         secure: false,
 //         ws: true,
