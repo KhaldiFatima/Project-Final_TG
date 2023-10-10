@@ -51,7 +51,7 @@ userSchema.method('getData', function () {
 
 userSchema.method('signJWT', function () {
   let data = this.getData();
-  data.token = jwt.sign(data, process.env.JWT_SECRET);
+  data.token = jwt.sign(data, process.env.JWT_SECRET, { expiresIn: '1d' });
   return data;
 });
 
